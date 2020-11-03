@@ -19,6 +19,8 @@ const ToDoView = (({ toDoList }) => {
                 return (
                     <li key={id}>
                         {todo}{" "}
+                        <span className="todo-button todo-edit-button">Edit</span>
+                        <span className="todo-button todo-delete-button">Delete</span>
                     </li>
                 )
             })}

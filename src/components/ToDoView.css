@@ -1,3 +1,23 @@
 ul {
     list-style-type: none;
 }
+
+li {
+    margin: 20px;
+}
+
+.todo-button {
+    margin: 10px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+} 
+
+.todo-edit-button {
+    background-color: blue
+}
+
+.todo-delete-button {
+    background-color: red;
+}
