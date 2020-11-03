@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { v4 as uuidv4 } from "uuid";
+import ToDoView from "./components/ToDoView";
+
+export default class App extends Component {
+  state = {
+    toDoList: [
+      {
+        id: uuidv4(),
+        todo: "Create an app"
+      },
+
+      {
+        id: uuidv4(),
+        todo: "Test the app"
+      },
+
+      {
+        id: uuidv4(),
+        todo: "Publish the app"
+      }
+    ],
+
+  };
+
+  render() {
+    const { toDoList } = this.state;
+
+    return (
+      <ToDoView
+        toDoList = {toDoList}
+      />
+    )
+  }
 }
 
-export default App;
