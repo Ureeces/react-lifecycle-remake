@@ -3,20 +3,26 @@ import { arrayOf, shape, number, string} from "prop-types";
 
 import "./ToDoView.css";
 
-const ToDoView = ((toDoList) => {
+const ToDoView = (({ toDoList }) => {
     console.log(toDoList);
 
     return (
-        <p>It works!</p>
+        // <p>It works!</p>
         // <ul>
-        //     {toDoList.map(({ id, todo }) => {
-        //         return (
-        //             <li key={id}>
-        //                 {todo}{" "}
-        //             </li>
-        //         )
-        //     })}
+        //     <li>1</li>
+        //     <li>2</li>
+        //     <li>3</li>
         // </ul>
+
+        <ul>
+            {toDoList.map(({ id, todo }) => {
+                return (
+                    <li key={id}>
+                        {todo}{" "}
+                    </li>
+                )
+            })}
+        </ul>
     )
 })
 
