@@ -49,7 +49,7 @@ export default class App extends Component {
 
   handleAddToDo = (event) => {
     event.preventDefault();
-    console.log("You clicked the Add Button!")
+    // console.log("You clicked the Add Button!")
 
     let newTodo = {
       id: uuidv4(),
@@ -63,6 +63,28 @@ export default class App extends Component {
       toDoValue: "",
       showNoToDosMessage: false
     });
+
+    console.log("Added new Todo:", newTodo.todo);
+  };
+
+  appHandleDeleteToDo = (targetID) => {
+    console.log(targetID);
+
+    let toDoListTrimmed = this.state.toDoList.filter(({ id }) => {
+      return id !== targetID;
+    });
+
+    this.setState({
+      toDoList: toDoListTrimmed
+    }, () => {
+      if(toDoListTrimmed.length === 0) {
+        this.setState({
+          showNoToDosMessage: true
+        });
+      }
+    });
+
+
   };
 
   render() {
@@ -82,12 +104,14 @@ export default class App extends Component {
           name="toDoValue"
           value = {this.state.toDoValue}
         />{" "}
-
         <button onClick={this.handleAddToDo}>Add</button>
+
+        {/* This will only display if there are no todos left */}
 
         {/* To Do View */}
         <ToDoView
         toDoList = {toDoList}
+        appHandleDeleteToDo = {this.appHandleDeleteToDo}
         />
       </div>
     )

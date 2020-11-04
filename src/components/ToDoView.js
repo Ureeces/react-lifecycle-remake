@@ -3,8 +3,14 @@ import { arrayOf, shape, number, string} from "prop-types";
 
 import "./ToDoView.css";
 
-const ToDoView = (({ toDoList }) => {
+const ToDoView = (({ toDoList, appHandleDeleteToDo }) => {
     console.log(toDoList);
+
+    const handleDeleteToDo = (id) => {
+        console.log('Reached line 10 of ToDoView.js');
+        appHandleDeleteToDo(id);
+        console.log('You clicked the delete button!');
+    }
 
     return (
         // <p>It works!</p>
@@ -20,7 +26,10 @@ const ToDoView = (({ toDoList }) => {
                     <li key={id}>
                         {todo}{" "}
                         <span className="todo-button todo-edit-button">Edit</span>
-                        <span className="todo-button todo-delete-button">Delete</span>
+                        <span 
+                        className="todo-button todo-delete-button" 
+                        onClick={() => handleDeleteToDo(id)}
+                        >Delete</span>
                     </li>
                 )
             })}
