@@ -51,6 +51,15 @@ export default class App extends Component {
     event.preventDefault();
     // console.log("You clicked the Add Button!")
 
+    // Check for empty todo
+    if(this.state.toDoValue.length === 0) {
+      this.setState({
+        showErrorMessage: true
+      });
+
+      return;
+    }
+
     let newTodo = {
       id: uuidv4(),
       todo: this.state.toDoValue
@@ -83,8 +92,6 @@ export default class App extends Component {
         });
       }
     });
-
-
   };
 
   render() {
@@ -107,14 +114,19 @@ export default class App extends Component {
         <button onClick={this.handleAddToDo}>Add</button>
 
         {/* This will only display if there are no todos left */}
-
-        {/* To Do View */}
+        {showNoToDosMessage ? (
+          <div className="input-error">Please Add Something To Do!</div>
+        ) : (
+        
+        /* To Do View */
         <ToDoView
-        toDoList = {toDoList}
-        appHandleDeleteToDo = {this.appHandleDeleteToDo}
+          toDoList = {toDoList}
+          appHandleDeleteToDo = {this.appHandleDeleteToDo}
         />
+
+        )}
       </div>
-    )
+    );
   }
 }
 
