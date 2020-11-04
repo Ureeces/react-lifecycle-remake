@@ -23,16 +23,55 @@ export default class App extends Component {
         todo: "Publish the app"
       }
     ],
+    toDoValue: "",
+    showErrorMessage: false,
+    showNoToDosMessage: false
 
   };
 
+  handleInputChange = (event) => {
+    // Shows us what value is tied to the input
+    // As it shows, each value is a single character, so for the future, we will need an array
+    // console.log(event.target.name, event.target.value);
+
+    // This turns of the error message if it has been toggled due to, well, an error
+    if(this.state.showErrorMessage) {
+      this.setState({
+        showErrorMessage: false
+      });
+    }
+
+    // This basically creates the array of target values
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
   render() {
-    const { toDoList } = this.state;
+    const { toDoList, showErrorMessage, showNoToDosMessage } = this.state;
 
     return (
-      <ToDoView
+      <div>
+        {/* Input Error Message Check */}
+        {showErrorMessage ? (
+          <div className="input-error">Please Enter a Todo!</div>
+        ) : null}
+
+        {/* Todo Input */}
+        <input 
+          onChange={this.handleInputChange}
+          type="text"
+          name="toDoValue"
+          value = {this.state.toDoValue}
+        />{" "}
+
+        <button>Add</button>
+
+        {/* To Do View */}
+        <ToDoView
         toDoList = {toDoList}
-      />
+        />
+      </div>
     )
   }
 }
