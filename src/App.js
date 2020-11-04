@@ -47,6 +47,24 @@ export default class App extends Component {
     });
   };
 
+  handleAddToDo = (event) => {
+    event.preventDefault();
+    console.log("You clicked the Add Button!")
+
+    let newTodo = {
+      id: uuidv4(),
+      todo: this.state.toDoValue
+    };
+
+    let updatedToDoList = [...this.state.toDoList, newTodo];
+
+    this.setState({
+      toDoList: updatedToDoList,
+      toDoValue: "",
+      showNoToDosMessage: false
+    });
+  };
+
   render() {
     const { toDoList, showErrorMessage, showNoToDosMessage } = this.state;
 
@@ -65,7 +83,7 @@ export default class App extends Component {
           value = {this.state.toDoValue}
         />{" "}
 
-        <button>Add</button>
+        <button onClick={this.handleAddToDo}>Add</button>
 
         {/* To Do View */}
         <ToDoView
