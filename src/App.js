@@ -10,17 +10,20 @@ export default class App extends Component {
     toDoList: [
       {
         id: uuidv4(),
-        todo: "Create an app"
+        todo: "Create an app",
+        isEditing: false
       },
 
       {
         id: uuidv4(),
-        todo: "Test the app"
+        todo: "Test the app",
+        isEditing: false
       },
 
       {
         id: uuidv4(),
-        todo: "Publish the app"
+        todo: "Publish the app",
+        isEditing: false
       }
     ],
     toDoValue: "",
@@ -76,6 +79,15 @@ export default class App extends Component {
     console.log("Added new Todo:", newTodo.todo);
   };
 
+  appHandleEditToDo = (targetID) => {
+    console.log("You clicked on the edit todo!");
+    console.log("Target ID is:", targetID);
+    
+
+
+    
+  };
+
   appHandleDeleteToDo = (targetID) => {
     console.log(targetID);
 
@@ -122,6 +134,7 @@ export default class App extends Component {
         <ToDoView
           toDoList = {toDoList}
           appHandleDeleteToDo = {this.appHandleDeleteToDo}
+          appHandleEditToDo = {this.appHandleEditToDo}
         />
 
         )}
